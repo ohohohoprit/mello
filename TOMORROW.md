@@ -35,13 +35,15 @@ landing page (`mello-landing`) and an unsigned Windows installer.
 
 ## Known landmines
 
-1. **Windows Smart App Control is ON on this machine** — blocks all locally-compiled exes.
-   That's why the app runs on **Electron, not Tauri** (PRD stack). Tauri source is kept in
-   `mello-bot/src-tauri/` and compiles fine up to link stage.
-   *Status: NOT fixable while SAC stays on — SAC has no exclusions and no local bypass.*
-   Your options: (a) turn SAC off in Windows Security — permanent until Windows reset, then
-   `npm run tauri dev` resumes the PRD path; (b) leave as is (recommended — Electron build
-   is fully working and verified); (c) distribute Tauri builds from a machine without SAC.
+1. **Windows Smart App Control — turned OFF (registry: VerifiedAndReputablePolicyState=0x0).
+   Takes effect after a REBOOT.** Reminder: SAC cannot be re-enabled without resetting
+   Windows — this is permanent by design.
+   After reboot: (a) verify by running the unsigned
+   `C:\Users\prita\AppData\Local\mello-build\win-unpacked\Mello.exe` directly — if it
+   launches, the packaged app is confirmed end-to-end; (b) the Tauri path (PRD stack) is
+   buildable again (`npm run tauri dev`) — note the frontend moved to Electron's DB bridge
+   during the pivot, so a full Tauri switch needs `@tauri-apps/api` + `plugin-sql` JS deps
+   reinstalled and `src/lib/db.ts` adapted (~1–2h). Until then Electron remains the runtime.
 2. **OneDrive locks renames** — SOLVED: electron-builder output lives at
    `C:\Users\prita\AppData\Local\mello-build` (outside OneDrive).
 3. **The installer is unsigned** — SmartScreen will warn users on "More info → Run anyway".
