@@ -1,0 +1,16 @@
+{
+  "greeting": "Hi, I'm Mello. I'm here for the wins *and* the wobbly days.",
+  "due": "Hey! {habit}? I'll sit with you 💛",
+  "honest_prompt": "Rough day? That's okay — telling me honestly counts too.",
+  "honest_ack": "Thank you for telling me. Rest is part of the work.",
+  "recovery": "Missed yesterday? Happens to everyone. One tiny step today = double growth. 🌱",
+  "celebrate": "YES! Momentum up! I'm so proud of you ✨",
+  "quiet": "zzz… off duty till {time}.",
+  "hatch": "Something cracked open… say hi to {name}! 🐣",
+  "onboarding_goal": "What are we working toward? Big or tiny — both count.",
+  "onboarding_duration": "How long should I stay with you on this one?",
+  "onboarding_name": "What should I call you? And… what's *my* name?",
+  "onboarding_personality": "How should I talk to you?",
+  "onboarding_first_habit": "Let's make your first tiny step. You can change it anytime.",
+  "onboarding_done": "I'm ready when you are. Tap me anytime. 💛"
+}

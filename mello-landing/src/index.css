@@ -1,0 +1,54 @@
+@import "tailwindcss";
+@import "./tokens.css";
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--mello-cream);
+  color: var(--mello-ink);
+  font-family: var(--mello-font-body);
+  line-height: 1.55;
+}
+
+.display {
+  font-family: var(--mello-font-display);
+  color: var(--mello-brown);
+}
+
+.card {
+  background: #fff;
+  border: 1px solid rgba(122, 78, 45, 0.15);
+  border-radius: var(--mello-radius-card);
+}
+
+.btn-gold {
+  background: var(--mello-gold);
+  color: var(--mello-brown);
+  font-weight: 700;
+  border-radius: var(--mello-radius-input);
+  padding: 12px 24px;
+  transition: box-shadow 150ms ease-out, transform 150ms ease-out;
+}
+
+.btn-gold:hover {
+  box-shadow: var(--mello-shadow-hover);
+  transform: translateY(-1px);
+}
+
+.btn-ghost {
+  border: 1px solid rgba(122, 78, 45, 0.35);
+  color: var(--mello-brown);
+  border-radius: var(--mello-radius-input);
+  padding: 12px 24px;
+}
+
+.chip {
+  background: rgba(168, 198, 134, 0.25);
+  color: #44552c;
+  border-radius: 20px;
+  padding: 4px 14px;
+  font-size: 13px;
+  font-weight: 600;
+}

@@ -1,0 +1,45 @@
+/* Mello Design System — PRD §08 tokens */
+
+:root {
+  /* Palette */
+  --mello-cream: #fff7e8;
+  --mello-gold: #ffd97a;
+  --mello-brown: #7a4e2d;
+  --mello-coral: #f7a8a0;
+  --mello-sage: #a8c686;
+  --mello-ink: #3a2a1a; /* body text on cream, WCAG AA 7:1+ */
+
+  /* Semantic mapping */
+  --mello-success: var(--mello-sage);
+  --mello-warning: var(--mello-coral); /* "gentle warning", never "error" */
+  --mello-cta: var(--mello-gold);
+  --mello-text: var(--mello-brown);
+  --mello-structure: var(--mello-brown);
+
+  /* Typography */
+  --mello-font-display: "Baloo 2", system-ui, sans-serif;
+  --mello-font-body: "Inter", system-ui, sans-serif;
+  --mello-text-caption: 11px;
+  --mello-text-body: 13px;
+  --mello-text-subhead: 16px;
+  --mello-text-heading: 22px;
+  --mello-text-hero: 32px;
+
+  /* Spacing scale: 4 · 8 · 12 · 16 · 24 · 32 · 48 */
+  --mello-space-1: 4px;
+  --mello-space-2: 8px;
+  --mello-space-3: 12px;
+  --mello-space-4: 16px;
+  --mello-space-6: 24px;
+  --mello-space-8: 32px;
+  --mello-space-12: 48px;
+
+  /* Radius — soft corners everywhere, echoing "no punishment" */
+  --mello-radius-input: 8px;
+  --mello-radius-card: 12px;
+  --mello-radius-modal: 20px;
+
+  /* Elevation — flat by default, soft blur on hover/active/overlay only */
+  --mello-shadow-hover: 0 4px 8px rgba(122, 78, 45, 0.18);
+  --mello-shadow-overlay: 0 4px 16px rgba(122, 78, 45, 0.22);
+}

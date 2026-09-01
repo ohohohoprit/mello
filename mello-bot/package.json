@@ -1,0 +1,68 @@
+{
+  "name": "mello-bot",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "main": "electron/main.cjs",
+  "description": "Mello — the habit pet that never guilt-trips you",
+  "author": "Prita",
+  "scripts": {
+    "dev": "concurrently -k \"vite\" \"wait-on tcp:127.0.0.1:1420 && electron --remote-debugging-port=9223 .\"",
+    "dev:vite": "vite",
+    "dev:electron": "electron .",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "tauri": "tauri",
+    "dist": "npm run build && electron-builder --win"
+  },
+  "dependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "sql.js": "^1.13.0",
+    "zustand": "^5.0.15"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "@types/sql.js": "^1.4.9",
+    "@vitejs/plugin-react": "^4.6.0",
+    "concurrently": "^9.2.1",
+    "electron": "^38.2.0",
+    "electron-builder": "^26.15.3",
+    "typescript": "~5.8.3",
+    "vite": "^7.0.4",
+    "wait-on": "^9.1.0"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true,
+    "electron@38.8.6": true,
+    "electron-winstaller@5.4.0": true
+  },
+  "build": {
+    "appId": "com.prita.mello",
+    "productName": "Mello",
+    "directories": {
+      "output": "C:\\Users\\prita\\AppData\\Local\\mello-build"
+    },
+    "files": [
+      "dist/**",
+      "electron/**",
+      "package.json"
+    ],
+    "asar": false,
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        }
+      ],
+      "icon": "src-tauri/icons/icon.ico"
+    },
+    "nsis": {
+      "oneClick": true,
+      "perMachine": false,
+      "artifactName": "Mello-Setup-${version}.exe"
+    }
+  }
+}

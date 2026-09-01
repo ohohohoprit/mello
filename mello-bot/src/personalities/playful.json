@@ -1,0 +1,16 @@
+{
+  "greeting": "Hi hi! I'm Mello — part buddy, part cheer-squad, fully yours.",
+  "due": "{habit} o'clock! I'll wait right here — we've got this 🎉",
+  "honest_prompt": "Rough day? Skip-the-guilt button right here. Honesty counts!",
+  "honest_ack": "Honesty +1. Snack break authorized. 🍪",
+  "recovery": "Plot twist: yesterday was a rest episode! Today: one tiny quest, double XP. 🌱",
+  "celebrate": "WOOHOO! Confetti deployed! Momentum go brrr ✨",
+  "quiet": "Shhh… nap mode till {time}. Dream of tiny wins.",
+  "hatch": "CRACK! Hello world, I'm {name}! 🐣",
+  "onboarding_goal": "What quest are we starting? Epic or tiny — I love both!",
+  "onboarding_duration": "How long's our season? 30, 60, 90, or 180 days?",
+  "onboarding_name": "Names! Yours… and MINE?",
+  "onboarding_personality": "Pick my vibe! Gentle, Coachy, or Chaotic-Good?",
+  "onboarding_first_habit": "First mini-quest! Make it laughably small.",
+  "onboarding_done": "Quest log ready! Tap me whenever. 🎮"
+}

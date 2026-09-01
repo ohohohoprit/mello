@@ -1,0 +1,186 @@
+/* Pet micro-motion — PRD F2: CSS bob/blink/breathe, pose swap ≤200ms,
+   celebratory bounce reserved for completions only (PRD §08 motion rules). */
+
+.pet {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.pet-svg {
+  transition: transform 200ms ease-out;
+  transform-origin: 50% 90%;
+}
+
+/* Idle breathing + gentle bob */
+.pet--idle .pet-svg {
+  animation: pet-breathe 3.2s ease-in-out infinite;
+}
+
+.pet--eyes-closed .pet-svg,
+.pet--sleep .pet-svg {
+  animation: pet-breathe 4.5s ease-in-out infinite;
+}
+
+.pet--happy-bounce .pet-svg,
+.pet--celebrate .pet-svg {
+  animation: pet-bounce 0.5s ease-in-out infinite;
+}
+
+.pet--remind .pet-svg {
+  animation: pet-nudge 0.6s ease-in-out infinite;
+}
+
+.pet--wave .pet-svg {
+  animation: pet-bob 1.6s ease-in-out infinite;
+}
+
+@keyframes pet-breathe {
+  0%,
+  100% {
+    transform: scaleY(1) translateY(0);
+  }
+  50% {
+    transform: scaleY(1.02) translateY(-1.5px);
+  }
+}
+
+@keyframes pet-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes pet-bounce {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  40% {
+    transform: translateY(-10px) scale(1.03);
+  }
+}
+
+@keyframes pet-nudge {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-3deg);
+  }
+  75% {
+    transform: rotate(3deg);
+  }
+}
+
+/* Blink: eyelids drop briefly over open eyes (only when eyes are open) */
+.pet--idle .pet-eyes {
+  animation: pet-blink 4.4s infinite;
+  transform-origin: 60px 52px;
+}
+
+@keyframes pet-blink {
+  0%,
+  92%,
+  100% {
+    transform: scaleY(1);
+  }
+  95% {
+    transform: scaleY(0.08);
+  }
+}
+
+/* Speech bubble for "remind!" pose */
+.pet-bubble {
+  position: absolute;
+  top: 6px;
+  right: 24px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--mello-gold);
+  color: var(--mello-brown);
+  font-family: var(--mello-font-display);
+  font-weight: 700;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--mello-shadow-overlay);
+  animation: pet-pop 200ms ease-out;
+}
+
+.pet-zzz {
+  position: absolute;
+  top: 10px;
+  right: 28px;
+  font-family: var(--mello-font-display);
+  color: var(--mello-brown);
+  opacity: 0.75;
+  animation: pet-float-z 2.4s ease-in-out infinite;
+}
+
+@keyframes pet-pop {
+  from {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes pet-float-z {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+/* Gold confetti dots — celebration only (PRD: CSS only, no libraries) */
+.confetti {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--mello-gold);
+  animation: confetti-fall 1.1s ease-in infinite;
+}
+
+.confetti-1 {
+  left: 28%;
+  background: var(--mello-gold);
+}
+.confetti-2 {
+  left: 50%;
+  background: var(--mello-coral);
+  animation-delay: 0.25s;
+}
+.confetti-3 {
+  left: 70%;
+  background: var(--mello-sage);
+  animation-delay: 0.5s;
+}
+
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(-8px) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(120px) scale(0.6);
+    opacity: 0;
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "greeting": "I'm Mello — your corner. Zero drama, steady progress.",
+  "due": "Time for {habit}. You've got this — one rep counts.",
+  "honest_prompt": "Rough day? Logging it honestly IS a rep. Go easy.",
+  "honest_ack": "Logged. Adjusting the plan, not the goal.",
+  "recovery": "Off day happens. Champions reset — one tiny step, double growth. 🌱",
+  "celebrate": "That's the streak-free way — momentum rising! 📈",
+  "quiet": "Recharging till {time}. Tomorrow's plan is ready.",
+  "hatch": "Hatch complete. {name} reporting for duty! 🐣",
+  "onboarding_goal": "What's the mission? Name it — we'll break it down together.",
+  "onboarding_duration": "Pick the runway: 30, 60, 90, or 180 days.",
+  "onboarding_name": "Your call-sign, and mine?",
+  "onboarding_personality": "Choose my coaching style. I'll keep it kind either way.",
+  "onboarding_first_habit": "First rep, smallest version. What is it?",
+  "onboarding_done": "Plan locked. See you at check-in. 💪"
+}

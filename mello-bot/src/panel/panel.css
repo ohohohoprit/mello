@@ -1,0 +1,401 @@
+/* Mello panel — habits & settings window */
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: var(--mello-cream);
+  border-radius: var(--mello-radius-modal);
+  overflow: hidden;
+  box-shadow: var(--mello-shadow-overlay);
+}
+
+.panel-drag {
+  -webkit-app-region: drag;
+  display: flex;
+  align-items: baseline;
+  gap: var(--mello-space-2);
+  padding: var(--mello-space-3) var(--mello-space-4);
+  background: var(--mello-gold);
+  cursor: grab;
+}
+
+.panel-drag:active {
+  cursor: grabbing;
+}
+
+.panel-title {
+  font-size: var(--mello-text-heading);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.panel-sub {
+  font-size: var(--mello-text-caption);
+  color: var(--mello-brown);
+  opacity: 0.7;
+}
+
+.panel-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--mello-space-3) var(--mello-space-4) var(--mello-space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--mello-space-3);
+}
+
+.card {
+  background: #fff;
+  border: 1px solid rgba(122, 78, 45, 0.15);
+  border-radius: var(--mello-radius-card);
+  padding: var(--mello-space-3);
+}
+
+.card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-title {
+  font-size: var(--mello-text-subhead);
+  margin: 0 0 var(--mello-space-2);
+}
+
+.card-note {
+  font-size: var(--mello-text-caption);
+  color: var(--mello-brown);
+  opacity: 0.7;
+  margin: 0 0 var(--mello-space-2);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mello-space-1);
+  margin-bottom: var(--mello-space-2);
+  font-size: var(--mello-text-caption);
+  color: var(--mello-brown);
+}
+
+.field input {
+  border: 1px solid rgba(122, 78, 45, 0.3);
+  border-radius: var(--mello-radius-input);
+  padding: var(--mello-space-1) var(--mello-space-2);
+  font-size: var(--mello-text-body);
+  background: var(--mello-cream);
+  color: var(--mello-ink);
+}
+
+.swatch-row {
+  display: flex;
+  gap: var(--mello-space-2);
+}
+
+.swatch {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+}
+
+.swatch--on {
+  border-color: var(--mello-brown);
+  box-shadow: var(--mello-shadow-hover);
+}
+
+/* Buttons */
+.btn {
+  border-radius: var(--mello-radius-input);
+  border: 1px solid rgba(122, 78, 45, 0.25);
+  background: var(--mello-cream);
+  color: var(--mello-brown);
+  padding: var(--mello-space-1) var(--mello-space-3);
+  font-size: var(--mello-text-body);
+}
+
+.btn--gold {
+  background: var(--mello-gold);
+  font-weight: 600;
+}
+
+.btn--sage {
+  background: var(--mello-sage);
+  font-weight: 700;
+}
+
+.btn--ghost {
+  border-color: transparent;
+  background: transparent;
+  opacity: 0.5;
+}
+
+.btn--ghost:hover {
+  opacity: 1;
+}
+
+.btn--wide {
+  width: 100%;
+  margin-top: var(--mello-space-2);
+}
+
+.btn-row {
+  display: flex;
+  gap: var(--mello-space-2);
+  align-items: center;
+}
+
+/* Add form */
+.add-form {
+  border: 1px dashed rgba(122, 78, 45, 0.3);
+  border-radius: var(--mello-radius-input);
+  padding: var(--mello-space-2);
+  margin-bottom: var(--mello-space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--mello-space-2);
+}
+
+.add-row {
+  display: flex;
+  gap: var(--mello-space-2);
+}
+
+.add-row--split {
+  justify-content: space-between;
+}
+
+.emoji-input {
+  width: 44px;
+  text-align: center;
+  font-size: 18px;
+  border: 1px solid rgba(122, 78, 45, 0.3);
+  border-radius: var(--mello-radius-input);
+  background: var(--mello-cream);
+}
+
+.title-input {
+  flex: 1;
+  border: 1px solid rgba(122, 78, 45, 0.3);
+  border-radius: var(--mello-radius-input);
+  padding: var(--mello-space-1) var(--mello-space-2);
+  background: var(--mello-cream);
+  color: var(--mello-ink);
+}
+
+.mode-toggle,
+.day-picker {
+  display: flex;
+  gap: 2px;
+}
+
+.mode-toggle button,
+.day-picker button {
+  min-width: 26px;
+  padding: 2px 6px;
+  font-size: var(--mello-text-caption);
+  border-radius: var(--mello-radius-input);
+  border: 1px solid rgba(122, 78, 45, 0.2);
+  background: var(--mello-cream);
+  color: var(--mello-brown);
+}
+
+.mode-toggle button.on,
+.day-picker button.on {
+  background: var(--mello-gold);
+  font-weight: 700;
+}
+
+/* Habit list */
+.habit-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--mello-space-2);
+}
+
+.habit {
+  display: flex;
+  align-items: center;
+  gap: var(--mello-space-2);
+  padding: var(--mello-space-2);
+  border-radius: var(--mello-radius-input);
+  background: var(--mello-cream);
+  border: 1px solid rgba(122, 78, 45, 0.12);
+}
+
+.habit--done {
+  opacity: 0.75;
+}
+
+.habit-emoji {
+  font-size: 22px;
+}
+
+.habit-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.habit-title {
+  font-weight: 600;
+  color: var(--mello-ink);
+  font-size: var(--mello-text-body);
+}
+
+.habit-meta {
+  font-size: var(--mello-text-caption);
+  color: var(--mello-brown);
+  opacity: 0.65;
+}
+
+.habit-actions {
+  display: flex;
+  gap: var(--mello-space-1);
+}
+
+.habit-done-label {
+  font-size: var(--mello-text-caption);
+  color: var(--mello-brown);
+  opacity: 0.7;
+}
+
+.habit-delete {
+  font-size: 16px;
+  line-height: 1;
+}
+
+/* Empty state — never a blank list (PRD §08) */
+.empty {
+  text-align: center;
+  color: var(--mello-brown);
+  font-size: var(--mello-text-body);
+  padding: var(--mello-space-4) 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--mello-space-2);
+  align-items: center;
+}
+
+.empty-art {
+  font-size: 40px;
+  margin: 0;
+}
+
+.empty p {
+  margin: 0;
+}
+
+.data-msg {
+  font-size: var(--mello-text-caption);
+  color: #4a7c2f;
+  font-weight: 600;
+}
+
+/* Pet stats — stage chip + momentum (F9/F6/F14) */
+.pet-stats {
+  display: flex;
+  align-items: center;
+  gap: var(--mello-space-2);
+  margin-bottom: var(--mello-space-2);
+  flex-wrap: wrap;
+}
+
+.stage-chip {
+  font-size: var(--mello-text-caption);
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px; /* PRD §08: stage badge radius */
+  background: var(--mello-sage);
+  color: #2b3a1a;
+  box-shadow: 0 0 6px rgba(168, 198, 134, 0.6); /* soft glow at current stage */
+}
+
+.stage-chip--egg {
+  background: #f3e3c2;
+  color: var(--mello-brown);
+}
+
+.stage-chip--elder-sage {
+  background: var(--mello-gold);
+  color: var(--mello-brown);
+}
+
+.stat {
+  font-size: var(--mello-text-caption);
+  color: var(--mello-brown);
+  font-variant-numeric: tabular-nums;
+}
+
+.stat strong {
+  font-size: var(--mello-text-subhead);
+  font-family: var(--mello-font-display);
+}
+
+/* Nudge settings — F5 */
+.field--row {
+  flex-direction: row;
+  align-items: center;
+  gap: var(--mello-space-2);
+}
+
+.field--row input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--mello-sage);
+}
+
+.field--times {
+  flex-direction: row;
+  gap: var(--mello-space-3);
+}
+
+.field--times input[type="time"] {
+  border: 1px solid rgba(122, 78, 45, 0.3);
+  border-radius: var(--mello-radius-input);
+  background: var(--mello-cream);
+  padding: 2px 4px;
+  font-size: var(--mello-text-caption);
+}
+
+input[type="range"] {
+  accent-color: var(--mello-gold);
+  width: 100%;
+}
+
+/* Wardrobe — hats (F11) */
+.hat-row {
+  display: flex;
+  gap: var(--mello-space-2);
+  flex-wrap: wrap;
+}
+
+.hat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: var(--mello-space-1) var(--mello-space-2);
+  border: 1px solid rgba(122, 78, 45, 0.2);
+  border-radius: var(--mello-radius-card);
+  background: var(--mello-cream);
+}
+
+.hat--on {
+  background: var(--mello-gold);
+  font-weight: 600;
+  box-shadow: var(--mello-shadow-hover);
+}
+
+.hat-icon {
+  font-size: 18px;
+}
+
+.hat-label {
+  font-size: 10px;
+  color: var(--mello-brown);
+}

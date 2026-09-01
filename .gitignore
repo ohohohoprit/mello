@@ -1,0 +1,29 @@
+# dependencies
+node_modules/
+
+# build outputs
+dist/
+release/
+C:\Users\prita\AppData\Local\mello-build/
+
+# Tauri (dormant) build artifacts
+src-tauri/target/
+
+# logs
+*.log
+
+# confidential PRDs & large binaries stay out of git
+*.pdf
+Mello_PRD_v2.0.txt
+prd_extracted.txt
+
+# unrelated starter files at repo root
+/src/
+
+# screenshots / temp
+*.png
+dist_log.txt
+
+# OS
+.DS_Store
+Thumbs.db

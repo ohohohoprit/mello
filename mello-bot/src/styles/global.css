@@ -1,0 +1,57 @@
+@import "./tokens.css";
+
+/* Transparent overlay window: the webview itself must be see-through */
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+body {
+  font-family: var(--mello-font-body);
+  color: var(--mello-ink);
+  line-height: 1.5;
+  font-size: var(--mello-text-body);
+}
+
+h1,
+h2,
+h3,
+.display {
+  font-family: var(--mello-font-display);
+  color: var(--mello-brown);
+}
+
+button {
+  font-family: var(--mello-font-body);
+  cursor: pointer;
+  border: 1px solid rgba(122, 78, 45, 0.25);
+  border-radius: var(--mello-radius-input);
+  background: var(--mello-cream);
+  color: var(--mello-brown);
+  padding: var(--mello-space-1) var(--mello-space-2);
+  transition: box-shadow 150ms ease-out, transform 150ms ease-out;
+}
+
+button:hover {
+  box-shadow: var(--mello-shadow-hover);
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
