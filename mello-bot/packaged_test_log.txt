@@ -1,7 +1,0 @@
-
-[mello] boot: {"pack":false,"userData":"C:\\Users\\prita\\AppData\\Local\\Temp\\mello-packaged-test","envUserData":true,"envPackagedTest":true}
-[mello] gotLock: true
-
-DevTools listening on ws://127.0.0.1:9224/devtools/browser/0b9cf37b-3001-4c0e-8c67-e79a06229645
-[17908:0901/233148.584:ERROR:content\browser\gpu\gpu_process_host.cc:964] GPU process exited unexpectedly: exit_code=-1
-[17908:0901/233148.586:ERROR:content\browser\network_service_instance_impl.cc:595] Network service crashed, restarting service.

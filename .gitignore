@@ -27,3 +27,5 @@ dist_log.txt
 # OS
 .DS_Store
 Thumbs.db
+
+packaged_test_log*.txt

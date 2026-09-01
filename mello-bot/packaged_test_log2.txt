@@ -1,6 +1,0 @@
-
-[mello] boot: {"pack":false,"userData":"C:\\Users\\prita\\AppData\\Local\\Temp\\mello-packaged-test3","envUserData":true,"envPackagedTest":true}
-[mello] gotLock: true
-
-DevTools listening on ws://127.0.0.1:9225/devtools/browser/4570d607-a201-46e4-bb2e-fddb4d189343
-[34680:0901/234354.213:ERROR:content\browser\network_service_instance_impl.cc:595] Network service crashed, restarting service.
