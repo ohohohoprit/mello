@@ -79,7 +79,7 @@ export default function App() {
   const [downloadUrl, setDownloadUrl] = useState<string | null>(null);
   useEffect(() => {
     // If a release exists, the button links straight to it; otherwise scroll to pricing.
-    fetch("https://api.github.com/repos/prita/mello/releases/latest")
+    fetch("https://api.github.com/repos/ohohohoprit/mello/releases/latest")
       .then((r) => (r.ok ? r.json() : Promise.reject()))
       .then((j) => {
         const asset = j.assets?.find((a: { name: string }) => a.name.endsWith(".exe"));
