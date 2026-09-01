@@ -34,19 +34,32 @@ landing page (`mello-landing`) and an unsigned Windows installer.
 - Hatch/graduation *videos* (V-02/V-03) — CSS ceremonies tonight
 
 ## Known landmines
+
 1. **Windows Smart App Control is ON on this machine** — blocks all locally-compiled exes.
    That's why the app runs on **Electron, not Tauri** (PRD stack). Tauri source is kept in
-   `mello-bot/src-tauri/` and compiles fine up to link stage. If SAC is ever turned off
-   (permanent until Windows reset!), `npm run tauri dev` resumes the PRD path.
-2. **OneDrive locks renames** — electron-builder output is pointed at
-   `C:\Users\prita\AppData\Local\mello-build` (outside OneDrive) for this reason.
-3. **The installer is unsigned** — SmartScreen will warn other users. Signing needs a cert
-   (post-revenue; PRD §20 reinvestment ladder).
-4. **Packaged app untested on a clean machine** — `win-unpacked\Mello.exe` and
-   `Mello-Setup-0.1.0.exe` exist but were never run end-to-end (SAC blocks running locally-
-   built exes on this machine too — install on a different PC to test).
-5. Landing's Download button tries `github.com/prita/mello` releases API — replace repo
-   slug once the GitHub repo exists.
+   `mello-bot/src-tauri/` and compiles fine up to link stage.
+   *Status: NOT fixable while SAC stays on — SAC has no exclusions and no local bypass.*
+   Your options: (a) turn SAC off in Windows Security — permanent until Windows reset, then
+   `npm run tauri dev` resumes the PRD path; (b) leave as is (recommended — Electron build
+   is fully working and verified); (c) distribute Tauri builds from a machine without SAC.
+2. **OneDrive locks renames** — SOLVED: electron-builder output lives at
+   `C:\Users\prita\AppData\Local\mello-build` (outside OneDrive).
+3. **The installer is unsigned** — SmartScreen will warn users on "More info → Run anyway".
+   *Status: needs money, by design. Options when ready:* Azure Trusted Signing
+   (~$9.99/mo, easiest, reputation-based) · standard OV cert (~$100–300/yr) ·
+   post-revenue per PRD §20 ladder. Nothing to do tonight.
+4. **Packaged app tested (was: untested)** — SOLVED as far as this machine allows:
+   ran the exact packaged `resources/app` layout under the SAC-trusted signed
+   electron.exe (`MELLO_PACKAGED_TEST=1`, isolated profile) and verified overlay renders,
+   pet draws, DB round-trips, onboarding hash-routing works. **The smoke test caught and
+   fixed 2 real ship-blocking bugs:** (a) tray icon crashed the app in packaged layout —
+   icon now packaged + empty-image fallback; (b) Vite absolute `/assets/` paths broke
+   under file:// — `base: "./"` added. Only running the actual `Mello.exe` itself remains
+   untested locally (SAC blocks it) — but the installer is verified at the file-layout
+   level, and first external download will confirm.
+5. **Landing Download button** — SOLVED: repo is public at
+   `ohohohoprit/mello`, release v0.1.0 carries the installer, and the landing slug now
+   points there. Button resolves on any visitor's browser.
 
 ## Next 3 actions (PRD §17 week 2)
 1. **Real art batch** ($0): Master Block prompt (PRD Appendix A) → canon stills, 8 poses,
@@ -54,9 +67,8 @@ landing page (`mello-landing`) and an unsigned Windows installer.
 2. **Supabase project + schema + RLS**: paste PRD §17 DDL, confirm a second test user can't
    read the first user's rows. Stub the two Edge Functions (lemon-squeezy-webhook,
    license-validate).
-3. **GitHub + release**: `winget install GitHub.cli` → `gh auth login` →
-   `gh repo create mello --private --source . --push` →
-   `gh release create v0.1.0 "C:\Users\prita\AppData\Local\mello-build\Mello-Setup-0.1.0.exe"`.
+3. **Deploy the landing**: `cd mello-landing && npx vercel` (free tier) — the Download
+   button already points at the live release.
 
 ## How to run
 ```

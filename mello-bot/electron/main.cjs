@@ -9,6 +9,10 @@ const { initDb, exportDb, importDb, dumpAll, restoreAll } = require("./db.cjs");
 
 const DEV_URL = "http://127.0.0.1:1420";
 
+// MELLO_PACKAGED_TEST=1: exercise the packaged file-load path from the dev
+// electron.exe (SAC blocks launching the unsigned Mello.exe on this machine).
+const packagedLike = app.isPackaged || !!process.env.MELLO_PACKAGED_TEST;
+
 let win = null; // pet overlay
 let panel = null; // habits & settings panel
 let tray = null;
@@ -33,7 +37,7 @@ function createOverlay() {
     },
   });
 
-  if (app.isPackaged) {
+  if (packagedLike) {
     win.loadFile(path.join(__dirname, "..", "dist", "index.html"));
   } else {
     win.loadURL(DEV_URL);
@@ -74,8 +78,10 @@ function openPanel(hash = "") {
       nodeIntegration: false,
     },
   });
-  if (app.isPackaged) {
-    panel.loadFile(path.join(__dirname, "..", "dist", "index.html"), { hash: hash.replace("#", "") });
+  if (packagedLike) {
+    panel.loadFile(path.join(__dirname, "..", "dist", "index.html"), {
+      hash: hash.replace("#", ""),
+    });
   } else {
     panel.loadURL(DEV_URL + hash);
   }
@@ -85,8 +91,18 @@ function openPanel(hash = "") {
 
 function createTray() {
   const iconPath = path.join(app.getAppPath(), "src-tauri", "icons", "icon.ico");
-  const icon = nativeImage.createFromPath(iconPath);
-  tray = new Tray(icon.isEmpty() ? nativeImage.createEmpty() : icon);
+  let icon = nativeImage.createFromPath(iconPath);
+  if (icon.isEmpty()) {
+    // fallback: 16x16 gold square so the tray always works
+    icon = nativeImage.createFromBuffer(
+      Buffer.from(
+        "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAK0lEQVR4nGNkYPj/n4ECwESJ5lED" +
+          "Rg0YNWDUgFEDRg0YNWDUgFEDRg0YNSD5HwB6vwMk2fJ1sAAAAABJRU5ErkJggg==",
+        "base64",
+      ),
+    );
+  }
+  tray = new Tray(icon);
 
   const menu = Menu.buildFromTemplate([
     { label: "Show / Hide Mello", click: () => win && win.setVisible(!win.isVisible()) },
@@ -143,13 +159,14 @@ function registerIpc() {
   });
 }
 
+// Isolated test instance: MELLO_USER_DATA gives a fresh profile (dev only).
+// Must be set BEFORE the lock request — the lock lives in the userData dir.
+if (process.env.MELLO_USER_DATA) app.setPath("userData", process.env.MELLO_USER_DATA);
+
 const gotLock = app.requestSingleInstanceLock();
 if (!gotLock) {
   app.quit();
 } else {
-  // Isolated test instance: MELLO_USER_DATA gives a fresh profile (dev only)
-  if (process.env.MELLO_USER_DATA) app.setPath("userData", process.env.MELLO_USER_DATA);
-
   app.on("second-instance", () => {
     if (win) {
       win.show();
